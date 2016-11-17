@@ -1,0 +1,17 @@
+---
+
+- hosts: webservers
+
+
+  tasks:
+    - set_fact:
+        package_name: httpd
+      when: ansible_os_family == 'RedHat'
+
+    - set_fact:
+        package_name: apache2
+      when: ansible_os_family == 'Debian'
+
+    - name: Install Apache
+      package: name={{ package_name }} state=present
+      become: true

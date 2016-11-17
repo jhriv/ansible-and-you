@@ -1,0 +1,8 @@
+---
+
+- hosts: webservers
+
+  tasks:
+    - name: Install Apache
+      package: name=httpd state=present
+      become: true
