@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  vars_prompt:
+    - name: domain
+      prompt: "Please enter domain"
+      private: no
+
+  tasks:
+    - name: Set the hostname
+      command: hostname '{{ inventory_hostname }}.{{ domain }}'
+      become: true
