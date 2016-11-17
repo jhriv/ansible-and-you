@@ -1,0 +1,19 @@
+---
+- hosts: webservers
+  vars:
+    home_page: /var/www/html/index.html
+  tasks:
+    - name: Install Apache
+      package: name=httpd state=installed
+    - name: Set Landing Page
+      template: src=home.html.j2 dest={{ home_page }}
+
+- hosts: eastcoast
+  vars:
+    motd: "This is located on the east coast"
+  tasks:
+    - name: Update MOTD
+      lineinfile:
+        dest: /etc/motd
+        state: present
+        line: '{{ motd }}'

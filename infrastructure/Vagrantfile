@@ -1,0 +1,46 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+el6 = "centos/6"
+el7 = "centos/7"
+ubuntu12 = "ubuntu/precise64"
+ubuntu14 = "ubuntu/trusty64"
+ubuntu16 = "ubuntu/xenial64"
+
+Vagrant.configure(2) do |config|
+
+  config.vm.define "web1" do |box|
+    box.vm.box = "#{el7}"
+    box.vm.synced_folder '.', '/vagrant', disabled: true
+    box.vm.box_check_update = false
+  end
+  config.vm.define "web2" do |box|
+    box.vm.box = "#{ubuntu14}"
+    box.vm.synced_folder '.', '/vagrant', disabled: true
+    box.vm.box_check_update = false
+  end
+
+  config.vm.define "db1" do |box|
+    box.vm.box = "#{ubuntu12}"
+    box.vm.synced_folder '.', '/vagrant', disabled: true
+    box.vm.box_check_update = false
+  end
+  config.vm.define "db2" do |box|
+    box.vm.box = "#{el6}"
+    box.vm.synced_folder '.', '/vagrant', disabled: true
+    box.vm.box_check_update = false
+  end
+
+  config.vm.define "tomcat1" do |box|
+    box.vm.box = "#{el7}"
+    box.vm.synced_folder '.', '/vagrant', disabled: true
+    box.vm.box_check_update = false
+  end
+
+  config.vm.define "redis1" do |box|
+    box.vm.box = "#{el7}"
+    box.vm.synced_folder '.', '/vagrant', disabled: true
+    box.vm.box_check_update = false
+  end
+
+end

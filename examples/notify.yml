@@ -1,0 +1,13 @@
+---
+- hosts: webservers
+  tasks:
+    - name: Update Site Definitions
+      template:
+        src: default.conf.j2
+        dest: /etc/httpd/conf.d/default-site.conf
+      notify: Restart Apache
+  handlers:
+    - name: Restart Apache
+      service:
+        name: httpd
+        state: restarted
